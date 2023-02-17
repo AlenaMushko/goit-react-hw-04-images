@@ -43,7 +43,7 @@ useEffect(() => {
       }
     };
     fetchImage();
-  }, [images, pageNumber]);
+  }, [images, pageNumber, searchValue]);
 
   const handleFormSubmit = searchValue => {
     setSearchValue(searchValue);

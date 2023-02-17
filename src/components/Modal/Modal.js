@@ -13,7 +13,7 @@ export const ModalImg = ({ id, tags, largeImageURL, onClose }) => {
     };
     window.addEventListener('keydown', handelKeyDown);
     return () => window.removeEventListener('keydown', handelKeyDown);
-  }, []);
+  }, [onClose]);
 
   return createPortal(
     <Overlay onClick={onClose}>
