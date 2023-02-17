@@ -33,7 +33,7 @@ useEffect(() => {
           return;
         }
         setImages(prevImg => [...prevImg, ...images]);
-        setPageNumber(prevPage => prevPage + 1);
+      
         setImgsOnPage(images.length);
         setIsEmpty(false);
       } catch (error) {
@@ -43,7 +43,7 @@ useEffect(() => {
       }
     };
     fetchImage();
-  }, [images, pageNumber, searchValue]);
+  }, [pageNumber, searchValue]);
 
   const handleFormSubmit = searchValue => {
     setSearchValue(searchValue);
@@ -53,8 +53,6 @@ useEffect(() => {
 
   const onLoadMoreClick =  () => {
     setPageNumber(prevPage => prevPage + 1);
-    console.log(pageNumber);
-    console.log(images);
   };
 
   return (
