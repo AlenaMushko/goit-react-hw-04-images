@@ -19,9 +19,8 @@ export const App = () => {
   const [error, setError] = useState('');
   const [isEmpty, setIsEmpty] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     if (!searchValue) {
-      console.log('0');
       return;
     }
     const fetchImage = async () => {
@@ -30,29 +29,29 @@ export const App = () => {
         const images = await fetchSearchImg(searchValue, pageNumber);
         if (images.length < 1) {
           setIsEmpty(true);
+           setImgsOnPage(images.length);
           return;
         }
         setImages(prevImg => [...prevImg, ...images]);
         setPageNumber(prevPage => prevPage + 1);
         setImgsOnPage(images.length);
         setIsEmpty(false);
-        console.log('5');
       } catch (error) {
         setError(error.message);
-        console.log(error);
       } finally {
         setIsLoading(false);
       }
     };
+    fetchImage();
   }, [images, pageNumber]);
 
   const handleFormSubmit = searchValue => {
     setSearchValue(searchValue);
+     setImages([]);
     setPageNumber(1);
-    setImages([]);
   };
 
-  const onLoadMoreClick = async () => {
+  const onLoadMoreClick =  () => {
     setPageNumber(prevPage => prevPage + 1);
     console.log(pageNumber);
     console.log(images);
