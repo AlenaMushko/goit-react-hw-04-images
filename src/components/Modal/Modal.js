@@ -4,19 +4,20 @@ import { useEffect } from 'react';
 import { Overlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
-export const ModalImg = ({ id, tags, largeImageURL, onClose }) => {
+export const ModalImg = ({ id, tags, largeImageURL, closeModal, closeByBackdrop }) => {
   useEffect(() => {
     const handelKeyDown = e => {
       if (e.code === 'Escape') {
-        onClose();
+        closeModal();
       }
     };
+ 
     window.addEventListener('keydown', handelKeyDown);
     return () => window.removeEventListener('keydown', handelKeyDown);
-  }, [onClose]);
+  }, [closeModal]);
 
   return createPortal(
-    <Overlay onClick={onClose}>
+    <Overlay onClick={closeByBackdrop}>
       <div className="modal" kay={id}>
         <img src={largeImageURL} alt={tags} />
       </div>
